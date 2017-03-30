@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移植Traceroute到Ecos | Technology Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="traceroute 是什么？　　Traceroute是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移植Traceroute到Ecos">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/移植traceroute到Ecos/index.html">
+<meta property="og:site_name" content="Technology Blog">
+<meta property="og:description" content="traceroute 是什么？　　Traceroute是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。">
+<meta property="og:updated_time" content="2017-03-30T09:44:53.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移植Traceroute到Ecos">
+<meta name="twitter:description" content="traceroute 是什么？　　Traceroute是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。">
+  
+    <link rel="alternate" href="/atom.xml" title="Technology Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Technology Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Thinking change the life.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-移植traceroute到Ecos" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/30/移植traceroute到Ecos/" class="article-date">
+  <time datetime="2017-03-30T08:29:54.000Z" itemprop="datePublished">2017-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移植Traceroute到Ecos
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="traceroute-是什么？"><a href="#traceroute-是什么？" class="headerlink" title="traceroute 是什么？"></a>traceroute 是什么？</h2><p>　　<a href="https://en.wikipedia.org/wiki/Traceroute" target="_blank" rel="external">Traceroute</a>是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。<br><a id="more"></a></p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>　　在Linux中，traceroute默认发送一组UDP报文到目的主机，但是可以配置ICMP请求或TCP SYN报文来替代。在Windows中，traceroute 默认发送ICMP请求报文而不是UDP报文。生存时间（TTL）值，被用来确定数据包发往目的地址过程中所经过的中间路由。当数据包经过路由器时，路由器会将数据包的TTL值减1，当路由器收到数据包的TTL值为0时，丢弃数据包，并返回ICMP error信息ICMP 超时。通常默认的初始TTL值为128（Windows OS）和64（Unix-based OS）<br>　　Traceroute程序通过初始发送TTL=1并且逐渐增加TTL值的数据包来识别中间路由。第一个路由器收到了数据包，减少TTL，发现TTL==0，丢弃数据包并返回ICMP超时信息给源地址。下一组数据包设置的TTL=2，所以第一个路由器将TTL-1并转发数据包，第二个路由器发现TTL==0，会丢弃数据包 并发回ICMP超时消息。Traceroute就可以通过 路由器发回的ICMP超时消息来构建一个数据包经过的路由器地址列表，直到到达目的地址，目的地址返回一个ICMP Reply消息。<br>　　每个沿路径返回的路由器时间戳值就是延迟的值，通常以毫秒为单位来测量每个包。<br>　　发送方期望在指定的秒内收到回复，如果在期望的间隔内没有收到确认数据包，会打印出一个星花。Internet Protocol不要求发往特定目的地的数据包必须采取相同的路由，所以主机列表记录的是数据包已经遍历过的主机。如果在#N跳的主机没有回复，在输出的时候这一跳被跳过。<br>　　在类Unix操作系统中，traceroute默认采用目的端口号范围33434-33534的UDP数据报。Traceroute程序通常有选项来使用ICMP Echo Request数据包或者TCP SYN报文来替代UDP。如果一个网络有防火墙并且同时管理Window 和类Unix系统，必须打开超过一个协议来允许traceroute穿过防火墙来工作并收到回复。</p>
+<h2 id="FreeBSD-Traceroute-Usage"><a href="#FreeBSD-Traceroute-Usage" class="headerlink" title="FreeBSD Traceroute Usage"></a>FreeBSD Traceroute Usage</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">FreeBSD Traceroute命令选项(1.4a12+FreeBSD)：</div><div class="line">    &quot;Usage: %s [-dFInrSvx] [-g gateway] [-i iface] [-f first_ttl]\n&quot;</div><div class="line">         &quot;\t[-m max_ttl] [-p port] [-P proto] [-q nqueries] [-s src_addr]\n&quot;</div><div class="line">         &quot;\t[-t tos] [-w waittime] [-z pausemsecs] host [packetlen]\n&quot;</div></pre></td></tr></table></figure>
+<p>-P：设置探查包协议类型：支持UDP（默认类型）、TCP、ICMP、GRE（协议号47，封装ppp协议:协议类型0x880b）<br>-p: 设置目的端口号<br>-i: 设置接口，探测包的源IP为接口IP地址(若有多个地址，可通过-s选项指定)<br>-s: 指定接口的一个IP地址为SIP<br>-t: 设置探查包IP协议TOS域<br>-w: 发送探查包后，设置接收数据等待时间，超时未收到数据则打印”*”<br>-m: 设置探查包IP协议TTL(Time to live)域<br>-g: 设置宽松的源站选路路由地址<br>-f: 设置first TTL值(默认为1)<br>-z: 两次探查间最小的时间间隔(default 0)，单位ms，Useful when some routers use rate-limit for icmp messages.</p>
+<p>-I: 设置发包协议类型为ICMP<br>-d: 打开socket层Debugging(需要内核支持)<br>　　setsockopt(sndsock, SOL_SOCKET, <strong>SO_DEBUG</strong>, (char <em>)&amp;on, sizeof(on));<br>-F: 设置探查包，IP不分片<br>-n: 显示IP地址时，不将其映射成主机名()<br>-r: 不经过路由表，直接发送给直连网络上的主机，如果主机不在直接网络上，则返回一个错误。<br>　　setsockopt(s, SOL_SOCKET, <strong>SO_DONTROUTE</strong>, (char </em>)&amp;on, sizeof(on));<br>-S: 打印lost探查包百分比<br>-v: 打印调试信息(-v –v 会把探查包按字节打印出来)<br>-x: 填充探查包IP校验和字段</p>
+<h2 id="移植到ecos中遇到的问题"><a href="#移植到ecos中遇到的问题" class="headerlink" title="移植到ecos中遇到的问题"></a>移植到ecos中遇到的问题</h2><ul>
+<li>Ecos共用同一地址空间，traceroute源文件中的全局变量和函数 须修改成static定义。</li>
+<li>Ecos Shell是一个单独线程来调用用户输入命令对应的函数（解析输入，调用相应函数），而不是执行命令的程序（ecos是一种单进程多线程操作系统），需要在调用函数时，对static 变量进行初始化。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　调试程序的时候，先从原理上弄懂程序，做到思想走在行动前面，思想指导行动，避免盲目行动。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/30/移植traceroute到Ecos/" data-id="cj0w5vki600000wkmkyt3gngo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/30/移植traceroute到Ecos/">移植Traceroute到Ecos</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/30/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Vskyman<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
