@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Vskyman&#39;s Technology Blog</title>
-  <subtitle>Thinking change life.\n Welcome the extraordinary.</subtitle>
+  <subtitle>Never underestimate your power to change yourself!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vskyman.github.io/"/>
-  <updated>2017-07-17T14:45:07.981Z</updated>
+  <updated>2017-07-17T14:56:37.575Z</updated>
   <id>https://vskyman.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统之存储管理</title>
+    <link href="https://vskyman.github.io/2017/07/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/"/>
+    <id>https://vskyman.github.io/2017/07/22/操作系统之内存储管理/</id>
+    <published>2017-07-22T08:29:54.000Z</published>
+    <updated>2017-07-17T14:56:37.575Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="traceroute-是什么？"><a href="#traceroute-是什么？" class="headerlink" title="traceroute 是什么？"></a>traceroute 是什么？</h2><p>　　<a href="https://en.wikipedia.org/wiki/Traceroute" target="_blank" rel="external">Traceroute</a>是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。<br><a id="more"></a></p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>　　在Linux中，traceroute默认发送一组UDP报文到目的主机，但是可以配置ICMP请求或TCP SYN报文来替代。在Windows中，traceroute 默认发送ICMP请求报文而不是UDP报文。生存时间（TTL）值，被用来确定数据包发往目的地址过程中所经过的中间路由。当数据包经过路由器时，路由器会将数据包的TTL值减1，当路由器收到数据包的TTL值为0时，丢弃数据包，并返回ICMP error信息ICMP 超时。通常默认的初始TTL值为128（Windows OS）和64（Unix-based OS）<br>　　Traceroute程序通过初始发送TTL=1并且逐渐增加TTL值的数据包来识别中间路由。第一个路由器收到了数据包，减少TTL，发现TTL==0，丢弃数据包并返回ICMP超时信息给源地址。下一组数据包设置的TTL=2，所以第一个路由器将TTL-1并转发数据包，第二个路由器发现TTL==0，会丢弃数据包 并发回ICMP超时消息。Traceroute就可以通过 路由器发回的ICMP超时消息来构建一个数据包经过的路由器地址列表，直到到达目的地址，目的地址返回一个ICMP Reply消息。<br>　　每个沿路径返回的路由器时间戳值就是延迟的值，通常以毫秒为单位来测量每个包。<br>　　发送方期望在指定的秒内收到回复，如果在期望的间隔内没有收到确认数据包，会打印出一个星花。Internet Protocol不要求发往特定目的地的数据包必须采取相同的路由，所以主机列表记录的是数据包已经遍历过的主机。如果在#N跳的主机没有回复，在输出的时候这一跳被跳过。<br>　　在类Unix操作系统中，traceroute默认采用目的端口号范围33434-33534的UDP数据报。Traceroute程序通常有选项来使用ICMP Echo Request数据包或者TCP SYN报文来替代UDP。如果一个网络有防火墙并且同时管理Window 和类Unix系统，必须打开超过一个协议来允许traceroute穿过防火墙来工作并收到回复。</p>
+<h2 id="FreeBSD-Traceroute-Usage"><a href="#FreeBSD-Traceroute-Usage" class="headerlink" title="FreeBSD Traceroute Usage"></a>FreeBSD Traceroute Usage</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">FreeBSD Traceroute命令选项(1.4a12+FreeBSD)：</div><div class="line">    &quot;Usage: %s [-dFInrSvx] [-g gateway] [-i iface] [-f first_ttl]\n&quot;</div><div class="line">         &quot;\t[-m max_ttl] [-p port] [-P proto] [-q nqueries] [-s src_addr]\n&quot;</div><div class="line">         &quot;\t[-t tos] [-w waittime] [-z pausemsecs] host [packetlen]\n&quot;</div></pre></td></tr></table></figure>
+<p>-P：设置探查包协议类型：支持UDP（默认类型）、TCP、ICMP、GRE（协议号47，封装ppp协议:协议类型0x880b）<br>-p: 设置目的端口号<br>-i: 设置接口，探测包的源IP为接口IP地址(若有多个地址，可通过-s选项指定)<br>-s: 指定接口的一个IP地址为SIP<br>-t: 设置探查包IP协议TOS域<br>-w: 发送探查包后，设置接收数据等待时间，超时未收到数据则打印”*”<br>-m: 设置探查包IP协议TTL(Time to live)域<br>-g: 设置宽松的源站选路路由地址<br>-f: 设置first TTL值(默认为1)<br>-z: 两次探查间最小的时间间隔(default 0)，单位ms，Useful when some routers use rate-limit for icmp messages.</p>
+<p>-I: 设置发包协议类型为ICMP<br>-d: 打开socket层Debugging(需要内核支持)<br>　　setsockopt(sndsock, SOL_SOCKET, <strong>SO_DEBUG</strong>, (char <em>)&amp;on, sizeof(on));<br>-F: 设置探查包，IP不分片<br>-n: 显示IP地址时，不将其映射成主机名()<br>-r: 不经过路由表，直接发送给直连网络上的主机，如果主机不在直接网络上，则返回一个错误。<br>　　setsockopt(s, SOL_SOCKET, <strong>SO_DONTROUTE</strong>, (char </em>)&amp;on, sizeof(on));<br>-S: 打印lost探查包百分比<br>-v: 打印调试信息(-v –v 会把探查包按字节打印出来)<br>-x: 填充探查包IP校验和字段</p>
+<h2 id="移植到ecos中遇到的问题"><a href="#移植到ecos中遇到的问题" class="headerlink" title="移植到ecos中遇到的问题"></a>移植到ecos中遇到的问题</h2><ul>
+<li>Ecos共用同一地址空间，traceroute源文件中的全局变量和函数 须修改成static定义。</li>
+<li>Ecos Shell是一个单独线程来调用用户输入命令对应的函数（解析输入，调用相应函数），而不是执行命令的程序（ecos是一种单进程多线程操作系统），需要在调用函数时，对static 变量进行初始化。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　调试程序的时候，先从原理上弄懂程序，做到思想走在行动前面，思想指导行动，避免盲目行动。</p>
+<p>本文链接：<a href="https://vskyman.github.io/2017/07/22/操作系统之存储管理/">操作系统之存储管理</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;traceroute-是什么？&quot;&gt;&lt;a href=&quot;#traceroute-是什么？&quot; class=&quot;headerlink&quot; title=&quot;traceroute 是什么？&quot;&gt;&lt;/a&gt;traceroute 是什么？&lt;/h2&gt;&lt;p&gt;　　&lt;a href=&quot;https://en.wikipedia.org/wiki/Traceroute&quot;&gt;Traceroute&lt;/a&gt;是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="操作系统" scheme="https://vskyman.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="操作系统" scheme="https://vskyman.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>移植Traceroute到Ecos</title>
