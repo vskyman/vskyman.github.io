@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vskyman.github.io/"/>
-  <updated>2017-08-19T08:13:11.570Z</updated>
+  <updated>2017-08-19T09:27:43.218Z</updated>
   <id>https://vskyman.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://vskyman.github.io/2017/08/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
     <id>https://vskyman.github.io/2017/08/13/操作系统之进程与线程/</id>
     <published>2017-08-13T13:33:06.000Z</published>
-    <updated>2017-08-19T08:13:11.570Z</updated>
+    <updated>2017-08-19T09:27:43.218Z</updated>
     
     <content type="html"><![CDATA[<h2 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h2><p>　　进程是正在执行的程序实例，包括程序计数器、寄存器和当前变量值。他是对CPU的抽象。
 　　</p>
@@ -28,7 +28,14 @@
 <h2 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h2><p>　　<br>　　图2-2中可以看到进程的基本状态图，三种状态是：<br>　　1）运行态（该进程实际占用CPU）<br>　　2）就绪态（可运行，但因为其他进程正在运行而暂时停止）<br>　　3）阻塞态（除非某种外部事件发生，否则进程不能运行）</p>
 <p><img src="/2017/08/13/操作系统之进程与线程/programState.JPG" alt=""><br>　　进程的三种状态之间有四种可能的转换关系，如图2-2所示。在操作系统发现进程不能继续运行下去时，发生转换1。（在某些系统中，进程可以执行一个诸如pause的系统调用来进入阻塞状态。其他系统，如UNIX，当进程从没有有效输入的管道或设备文件度数据时，进程自动被阻塞）<br>　　转换2和3是由进程调度程序引起的，调度行为与选择的调度算法有关，进程调度程序是操作系统的一部分。<br>　　当进程等待的一个外部事件发生时（如一些输入到达），则发生转换4。如果此时没有其他进程运行，则立即触发转换3，该进程便开始运行。否则程序处于就绪态，等待CPU空闲时，调度该进程执行。</p>
 <h2 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h2><p>　　为了实现进程模型，操作系统维护一张表格，即进程表（又叫进程控制块PCB）。每个进程占用一个进程表项，该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、打开的文件状态、账号和调度信息，以及其他进程由运行态转换到就绪态或阻塞态时所必须保存的信息，以保证该进程随后能再次启动。<br>　　图2-4中展示了一个典型系统中的关键字段:<br>|进程管理|存储管理|文件管理|<br>|——|——|——|<br>| 寄存器     | 正文段指针 | 根目录 |<br>| 程序计数器 | 数据段指针 | 工作目录 |<br>| 程序状态字 | 堆栈段指针 | 文件描述符 |<br>| 堆栈指针   | | 用户ID |<br>| 进程状态| | 组ID |<br>| 优先级 | | |<br>| 调度参数 | | |<br>| 进程ID | | |<br>  父进程 |<br>  进程组 |<br>  信号 |<br>  进程开始时间 |<br>  使用的CPU时间 |<br>  子进程的CPU时间 |<br>  下次报警时间 |<br><img src="/2017/08/13/操作系统之进程与线程/pcb_field.jpg" alt=""><br>　　了解了进程表，下面阐述单个CPU是如何维护多个进程的顺序执行：<br>　　在内存底部的固定区域，存放着与I/0类关联的称为中断向量的表格，它包含中断服务程序的入口地址。假设一个磁盘中断发生时，用户进程3正在运行，则中断硬件将当前进程的程序计数器、程序状态字、少量寄存器（EFLAGS标志寄存器、CS代码段寄存器、IP指令指针寄存器、SS堆栈段寄存器、ESP栈顶指针）等压入堆栈，计算机随即跳转到中断向量所指向的地址，接着中断服务例程接管一切工作。<br>　　所有中断都从保存寄存器开始，通常将其保存在当前进程的进程表项里。随后会从堆栈中删除由中断硬件机制存入堆栈的信息，并将堆栈指向一个进程处理程序所使用的临时堆栈。之后，调用一个C过程处理特定中断类型剩下的工作。在完成有关工作后，大概会使某些进程就绪，接着调用调用调度程序，决定随后运行哪个进程。随后将控制权转给一段汇编代码，为当前进程装入寄存器已及内存映射并启动该进程。<br>　　中断发生后操作系统底层的工作步骤：<br>　　1.硬件压入堆栈程序计数器等<br>　　2.硬件从中断向量装入新的程序计数器<br>　　3.汇编语言过程保存寄存器值<br>　　4.汇编语言过程设置新的堆栈<br>　　5.C中断服务例程运行（典型地读和缓冲输入）<br>　　6.调度程序决定下一个运行的程序<br>　　7.C过程返回至汇编代码<br>　　8.汇编语言过程开始运行新的当前进程</p>
-<h3 id="进程用户栈与内核栈"><a href="#进程用户栈与内核栈" class="headerlink" title="进程用户栈与内核栈"></a>进程用户栈与内核栈</h3><p><img src="/2017/08/13/操作系统之进程与线程/interrupted_procedure&#39;s_and_handler&#39;s_stack.png" alt=""></p>
+<h3 id="进程用户栈与内核栈"><a href="#进程用户栈与内核栈" class="headerlink" title="进程用户栈与内核栈"></a>进程用户栈与内核栈</h3><pre><code>每个进程会有两个栈，一个用户栈，存在于用户空间，一个内核栈，存在于内核空间。当进程在用户空间运行时，cpu堆栈指针寄存器里面的内容是用户堆栈地址，使用用户栈；当进程在内核空间时，cpu堆栈指针寄存器里面的内容是内核栈空间地址，使用内核栈。
+内核在创建进程，创建task_struct的同时，会为进程创建内核栈（地址保存在void *stack中），在内核栈的栈顶存储了thread_info结构，其中包含了struct task_struct  *task字段，从而查找到该进程相关数据信息，如下图所示：
+</code></pre><p><img src="/2017/08/13/操作系统之进程与线程/thread_info.png" alt=""><br>    从上图可以看到，内核栈是从该内存区域的顶层向下（从高地址到低地址）增长的，而thread_info结构则是从该区域的开始处向上（从低地址到高地址）增长。内核栈的栈顶地址存储在esp寄存器中。所以，当进程从用户态切换到内核态后，esp寄存器指向这个区域的末端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">内核3.10中，内核栈定义：</div><div class="line">union thread_union &#123;</div><div class="line">　　struct thread_info thread_info;</div><div class="line">　　unsigned long stack[THREAD_SIZE/sizeof(long)];</div><div class="line">　　&#125;;</div><div class="line">由上图可知，通过esp&amp;(~(THREAD_SIZE - 1)))获得thread_info，通过current_thread_info()-&gt;task获取当前进程描述符current:</div><div class="line">#define current get_current()</div><div class="line">　　static inline struct task_struct * get_current(void)</div><div class="line">　　&#123;</div><div class="line">　　	return current_thread_info()-&gt;task;</div><div class="line">　　&#125;</div><div class="line">　　static inline struct thread_info *current_thread_info(void)</div><div class="line">　　&#123;</div><div class="line">　　	struct thread_info *ti;</div><div class="line">　　	__asm__(&quot;andl %%esp,%0; &quot;:&quot;=r&quot; (ti) : &quot;&quot; (~(THREAD_SIZE - 1)));</div><div class="line">　　	return ti;</div><div class="line">　　&#125;</div><div class="line">得到current后，就可以获得当前正在运行进程描述符中的任一字段了，比如我们通常所做的：current-&gt;pid。</div><div class="line">```c</div></pre></td></tr></table></figure></p>
+<pre><code>当进程因为中断或者系统调用而陷入内核态时，进程所使用的堆栈也要从用户栈转到内核栈。
+进程陷入内核态后，就会使用其TSS段中给出的特权级0的堆栈指针tss.ss0、tss.esp0，即内核栈。原用户栈指针会被保存在内核栈中。而当从内核态返回用户态时，就会恢复使用用户态的堆栈。这样就实现了内核栈和用户栈的互转。
+那么，我们知道从内核转到用户态时用户栈的地址是在陷入内核的时候保存在内核栈里面的，但是在陷入内核的时候，我们是如何知道内核栈的地址的呢？
+关键在进程从用户态转到内核态的时候，进程的内核栈总是空的。这是因为，当进程在用户态运行时，使用的是用户栈，当进程陷入到内核态时，内核栈保存进程在内核态运行的相关信息，一旦进程返回用户态后，内核栈中保存的信息就无效了，因此每次进程从用户态陷入内核的时候得到的内核栈都是空的。所以在进程陷入内核的时候，直接把内核栈的栈顶地址给堆栈指针寄存器就可以了。
+</code></pre><p><img src="/2017/08/13/操作系统之进程与线程/interrupted_procedure&#39;s_and_handler&#39;s_stack.png" alt=""></p>
 <p>本文链接：<a href="https://vskyman.github.io/2017/08/13/操作系统之进程与线程/">操作系统之进程与线程</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>
 ]]></content>
     
