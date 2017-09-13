@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://vskyman.github.io/2017/09/10/%E3%80%8A%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-09-12T15:40:55.407Z</lastmod>
+    <lastmod>2017-09-13T14:40:26.619Z</lastmod>
     <data>
         <display>
         <title>《智能时代》读书总结</title>
@@ -15,6 +15,26 @@
            
              
               <breadCrumb title="读书笔记" url="https://vskyman.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vskyman.github.io/2017/07/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2017-09-13T13:50:40.316Z</lastmod>
+    <data>
+        <display>
+        <title>操作系统之存储管理</title>
+        <pubTime>2017-07-22T08:29:54.000Z</pubTime>
+        
+        <tag>操作系统</tag>
+         
+         
+           
+             
+              <breadCrumb title="操作系统" url="https://vskyman.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
           
         </display>
     </data>
@@ -56,26 +76,6 @@
            
              
               <breadCrumb title="网络技术" url="https://vskyman.github.io/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://vskyman.github.io/2017/07/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2017-07-23T12:07:19.567Z</lastmod>
-    <data>
-        <display>
-        <title>操作系统之存储管理</title>
-        <pubTime>2017-07-22T08:29:54.000Z</pubTime>
-        
-        <tag>操作系统</tag>
-         
-         
-           
-             
-              <breadCrumb title="操作系统" url="https://vskyman.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
           
         </display>
     </data>
