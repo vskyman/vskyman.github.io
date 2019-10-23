@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Vskyman&#39;s Technology Blog</title>
+  
   <subtitle>Never underestimate your power to change yourself...</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vskyman.github.io/"/>
-  <updated>2017-09-14T00:40:03.644Z</updated>
+  <updated>2019-10-23T08:03:00.782Z</updated>
   <id>https://vskyman.github.io/</id>
   
   <author>
@@ -16,25 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用hexo和github.io搭建blog</title>
+    <link href="https://vskyman.github.io/2019/10/15/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub.io%E6%90%AD%E5%BB%BAblog/"/>
+    <id>https://vskyman.github.io/2019/10/15/使用hexo和github.io搭建blog/</id>
+    <published>2019-10-15T12:26:00.000Z</published>
+    <updated>2019-10-23T08:03:00.782Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h2><p>　　2017年搭建了这个blog，想着通过写文章来锻炼表达能力和积累知识，但是后来觉得己写的不是很有价值，就没有坚持下来。又工作了两年，觉得还是要有个地方总结积累自己学到的东西，不一定很有创新，能坚持把新学的知识或者感想记录下来，也会很有用处的。</p><a id="more"></a><h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><p>下载 <a href="https://nodejs.org/en" target="_blank" rel="noopener">nodejs</a>.<br>或者通过：<br>cURL:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh</span><br></pre></td></tr></table></figure><p>Wget:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh</span><br></pre></td></tr></table></figure><p>安装完成后，重启终端并执行下列命令即可安装 Node.js。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install node</span><br></pre></td></tr></table></figure><h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>　　创建并初始化hexo：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">　　npm install -g hexo-cli #使用 npm 安装 Hexo。</span><br><span class="line">　　hexo init &lt;folder&gt;  #新建一个网站。</span><br><span class="line">　　cd &lt;folder&gt;</span><br><span class="line">　　npm install</span><br><span class="line">　　hexo new [layout] &lt;title&gt;  #新建一篇文章</span><br><span class="line">　　hexo generate  #生成静态文件。</span><br><span class="line">　　hexo deploy  #部署网站。</span><br><span class="line">　　hexo server  #启动服务器。</span><br></pre></td></tr></table></figure><p>hexo init 完成后，指定文件夹的目录如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure><p>_config.yml<br>　　网站的 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">配置</a> 信息，您可以在此配置大部分的参数<br>package.json<br>　　应用程序的信息。<br>scaffolds<br>　　<a href="https://hexo.io/zh-cn/docs/writing" target="_blank" rel="noopener">模版</a> 文件夹。Hexo的模板是指在新建的文章文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。<br>source<br>　　资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 <code>_</code> (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹，而其他文件会被拷贝过去。<br>themes<br>　　<a href="https://hexo.io/zh-cn/docs/themes" target="_blank" rel="noopener">主题</a> 文件夹。Hexo 会根据主题来生成静态页面。<br><code>详细的Hexo命令见[指令](https://hexo.io/zh-cn/docs/commands)</code></p><h3 id="部署网站到GitHub-Pages"><a href="#部署网站到GitHub-Pages" class="headerlink" title="部署网站到GitHub Pages"></a>部署网站到GitHub Pages</h3><p>　　<a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> - Websites for you and your projects.</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/index.html</a><br><a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a></p><p>本文链接：<a href="https://vskyman.github.io/2019/10/15/使用hexo和github.io搭建blog/">使用hexo和github.io搭建blog</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;题记&quot;&gt;&lt;a href=&quot;#题记&quot; class=&quot;headerlink&quot; title=&quot;题记&quot;&gt;&lt;/a&gt;题记&lt;/h2&gt;&lt;p&gt;　　2017年搭建了这个blog，想着通过写文章来锻炼表达能力和积累知识，但是后来觉得己写的不是很有价值，就没有坚持下来。又工作了两年，觉得还是要有个地方总结积累自己学到的东西，不一定很有创新，能坚持把新学的知识或者感想记录下来，也会很有用处的。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="记录" scheme="https://vskyman.github.io/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《智能时代》读书总结</title>
     <link href="https://vskyman.github.io/2017/09/10/%E3%80%8A%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     <id>https://vskyman.github.io/2017/09/10/《智能时代》读书笔记/</id>
     <published>2017-09-10T08:26:31.000Z</published>
-    <updated>2017-09-14T00:40:03.644Z</updated>
+    <updated>2019-10-15T11:14:31.159Z</updated>
     
-    <content type="html"><![CDATA[<p>　　之前读过《浪潮之巅》和《硅谷之谜》，被一个个科技巨头的故事深深吸引，在科技变革的浪潮中，有的公司顺势崛起，而有的则迅速消亡。在变革的巨浪中，公司的力量太小，只有拥抱技术变迁，才能不被淘汰。公司是这样，我们每个人也是，提早为可能要到来的巨浪做准备。<br><a id="more"></a>　　<br>　　一口气读完《智能时代》，书中也表达同样的观点：“2%的人将控制未来，成为他们或被淘汰”。阅读本书，开拓了视野和思路，下面总结下书中观点。</p>
-<h2 id="数据–人类建造文明的基石"><a href="#数据–人类建造文明的基石" class="headerlink" title="数据–人类建造文明的基石"></a>数据–人类建造文明的基石</h2><p>　　《智能时代》这本书，首先描述了<strong>数据</strong>、<strong>信息</strong>和<strong>知识</strong>的概念，并且讲述了三者的联系：数据是杂乱的，需要对数据处理，过滤掉无用的噪声或删除有害的数据，从而获取到数据背后的信息来。而知识比数据和信息更高了一个层次，它更加抽象，并且具有系统性的特征，它是对数据和信息处理之后，被相关领域专业知识的人才总结出来的。书中的例子是：通过测量星球的位置和对应的时间，就得到数据；通过这些数据得到星球运动的轨迹，就是信息；通过信息总结出开普勒三定律，就是知识。人类进步就是靠使用知识不断改变生活和周围世界的过程，而这一切的基础就是数据。所以说数据是人类建造文明的基石。　　<br>　　数据一个重要的特性是，数据之间具有<strong>关联性</strong>。所以通过对数据挖掘和分析可以得到想要的和许多意想不到的信息。比如<a href="https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E6%9C%80%E8%91%97%E5%90%8D%E2%80%9C%E7%85%A7%E7%89%87%E6%B3%84%E5%AF%86%E6%A1%88%E2%80%9D/13870540" target="_blank" rel="external">中国最著名“照片泄密案“</a>，就是个很好的通过分析来获得有用信息的例子。因为数据之间的这种相关性，当无法直接获得信息（比如疫情传播情况），可以将相关联的信息（比如各地搜索情况）量化，然后通过数学模型，间接地得到所需信息。数学模型的基础离不开<strong>概率论</strong>和<strong>统计学</strong>。统计学的数据采集中有两个要点：<strong>量</strong>和<strong>质</strong>，量是指统计的数据量必须充足，而质则是指采集的数据需要具有代表性、与统计的目标相一致。因此，准确的统计结果，依赖大量的有效数据。在实际应用中需要建立数学模型，寻找模型参数，来让模型和采集的数据相匹配。过去寻找模型更加重要，但在今天更多的是寻找模型的参数，这属于机器学习（找到数学模型后，用统计的方法“训练出”模型的参数）的范畴。至于模型选择，可以将很多简单的模型组合到一起，取代寻找一个复杂模型，来逼近真实情况。这样的方法被称为<strong>数据驱动方法</strong>。因为，它是先有大量数据而不是预设的模型，然后用很多简单的模型去契合数据。数据驱动方法是大数据的基础，也是智能革命的核心，更重要的是它带来了一种新的思维方式。<br>　　人类认识自然的过程，科学实践的过程，以及在经济、社会领域的行为，总是伴随着数据的使用。从某种程度上讲，获得和利用数据的水平。在电子计算机诞生、人类进入信息时代之后，数据的作用越来越明显，数据驱动方法开始被普遍采用。如果把资本和机械动能作为大航海时代以来全球近代化的推动力，那么数据将成为下一次技术革命和社会变革的核心动力。</p>
-<h2 id="大数据和机器智能"><a href="#大数据和机器智能" class="headerlink" title="大数据和机器智能　　"></a>大数据和机器智能　　</h2><p>　　验证机器有无智能的方法–图灵测试：让一台机器和一个人坐在幕后，裁判同时和幕后的人和机器交流，如果裁判无法判断对方是人还是机器，就说明这台机器有了和人同等的智能。学术界将机器智能分为<strong>传统人工智能方法</strong>和<strong>现代其他方法（如数据驱动、知识发现或机器学习）</strong>。传统的人工智能就是首先了解人类是如何产生智能的，然后让计算机按照人的思路去做，但是这种方法无法让计算机有类似于人的智能。作者举了一个例子：The pen was in the box(钢笔在盒子里)很好理解，但是另一句语法相同的话：The box in the pen就让人费解。在英语中pen有另一个不常用的意思–小孩玩耍的围栏。知道了这层含义，这句话就能够理解了。但是对于机器，如果使用同样的语法分析，这两句话会得到相同的语法分析树，而仅根据这两句话本身，甚至通篇文章，是无法判定pen的含义是围栏还是钢笔。人对这两句话的理解并非来自语法分析和语义本身，而是来自他们的常识或者说关于世界的知识（world knowledge），这种问题是传统的人工智能方法解决不了的。因此只有另辟蹊径，采用统计+数据的方法，这种方法最大的好处是，随着数据量的积累，系统会变得越来越好，相比之下过去人工智能的方法很难收益于数据量的提升。　　<br>　　数据的量变可以引起质变，作者举出google翻译系统的翻译准确率在短时间超过其他研究机构的例子，来说明大量的数据使得google的翻译系统发生了质变：在大部分研究团队只够训练三元模型的情况下，google能够训练出六元模型。由于互联网和移动互联网的出现，数据量剧增，并且开始相互关联，数据驱动方法的优势越来越明显。全世界各个领域数据不断向外扩展，很多数据开始出现交叉，各个维度的数据从点和线渐渐连成了网，或者说数据的关联性极大地增强，在这样的背景下，出现了大数据的概念。那么什么是大数据呢，它有哪些特征？大数据最明显的特征是<strong>体量大</strong>，除了体量大以外，作者认为大数据还有<strong>多维度</strong>和<strong>全面性（完备性）</strong>的特征。大数据的<strong>时效性</strong>不是必须的，但是如果有时效性可以做到很多过去做不到的事情：如城市智能交通管理。<br>　　有了大数据之后，就可以变智能问题为数据问题，机器智能不再是和人一样靠推理，而是采用大数据，从数据中学习获得信息和知识。由大数据引发的革命已经悄然发生，它能够让计算机的智能水平产生飞跃，在很多领域计算机将获得比人类更高的智能。大数据和由之而来的智能革命决定着今后20年的经济发展。</p>
-<h2 id="机械思维和大数据思维"><a href="#机械思维和大数据思维" class="headerlink" title="机械思维和大数据思维"></a>机械思维和大数据思维</h2><p>　　自17世纪以来指导我们日常做事行为的最重要的思维方式是机械思维。机械思维的核心思想可以概括为：1.世界变化的规律是确定的；2.因为有确定性做保障，因此规律不仅可以被认识，而且可以用简单的公式或者语言描述清楚；3.这些规律应该是放之四海皆准的。机械思维作为一种准则指导人们的行为，其核心思想可以进一步概括成<strong>确定性（或者可预测性）</strong>和<strong>因果关系</strong>。例如牛顿用了几个定律（力学三定律和万有引力定律）就可以把天体的运动规律讲清楚，并且应用到任何场合都是正确的，这就是确定性。类似的，当我们给物体施加外力时，它就获得一个加速度，而加速度的大小取决于外力和物体本身质量，这是一种因果关系。<br>　　机器思维促进了世界近代化，乃至现代化的过程–它导致了很多重大发明和发现，比如爱因斯坦的相对论，也促进了一些现代科学的诞生，比如现代医药学。但是世界本身存在着很大的不确定性，由于它否认了不确定性和不可知性，机械思维在认识世界时还是有很多的局限性。世界不确定性来自两个方面：1.影响世界的变量非常多，很多细节难以准确测量。2.来自客观世界本身，它是宇宙的一个特性（微观世界里电子绕原子核的运动轨迹）。因为不确定性，世界上很多事情难以用确定的公式或者规则来表示。但是，并非没有规律可循，通常可以用概率模型来描述。在概率论的基础上，香农建立的信息论将世界的不确定性和信息联系了起来（大数据的可行性）。在无法确定因果关系时，数据为我们提供了解决问题的新方法，数据中包含的信息可以帮我们消除不确定性，而数据之间的相关性在某种程度上可以取代原来的因果关系，帮助我们得到想知道的答案，这便是大数据的核心。大数据思维和机械思维并非完全对立，它更多的是对后者的补充。
-　</p>
-<h2 id="智能革命"><a href="#智能革命" class="headerlink" title="智能革命"></a>智能革命</h2><p>　　我们今天可能处在机器智能将要超过人类的拐点上，作者从数据的产生、存储、传输和处理四个角度分析大数据形成的技术条件，并且讲述了大数据和智能革命的技术挑战和未来的智能化产业，在今后，任何能提供大数据关键技术的公司和个人，在未来的智能革命中，都将有大展宏图的机会。　<br>　　“这是最好的时代，也是最坏的时代”，大数据导致机器革命的到来，这对未来社会的影响不仅仅存在于经济领域，而是全方位的。总体上看，这些影响是正面的，从长远看会使我们未来的社会变得更好。不过，智能革命也会带来很多负面的影响，特别是在它发展的初期。任何一次技术革命，最初受益的都是发展它、使用它的人，而远离它、拒绝接受它的人，在很长的时间里都是迷茫的一代。在智能革命到来之际，作为人和企业无疑应该拥抱它，让自己成为那2%的受益者。这将是一个让我们振奋的时代，也是一个给我们带来空前挑战的时代。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>　　之前读过《浪潮之巅》和《硅谷之谜》，被一个个科技巨头的故事深深吸引，在科技变革的浪潮中，有的公司顺势崛起，而有的则迅速消亡。在变革的巨浪中，公司的力量太小，只有拥抱技术变迁，才能不被淘汰。公司是这样，我们每个人也是，提早为可能要到来的巨浪做准备。</p><a id="more"></a>　　<p>　　一口气读完《智能时代》，书中也表达同样的观点：“2%的人将控制未来，成为他们或被淘汰”。阅读本书，开拓了视野和思路，下面总结下书中观点。</p><h2 id="数据–人类建造文明的基石"><a href="#数据–人类建造文明的基石" class="headerlink" title="数据–人类建造文明的基石"></a>数据–人类建造文明的基石</h2><p>　　《智能时代》这本书，首先描述了<strong>数据</strong>、<strong>信息</strong>和<strong>知识</strong>的概念，并且讲述了三者的联系：数据是杂乱的，需要对数据处理，过滤掉无用的噪声或删除有害的数据，从而获取到数据背后的信息来。而知识比数据和信息更高了一个层次，它更加抽象，并且具有系统性的特征，它是对数据和信息处理之后，被相关领域专业知识的人才总结出来的。书中的例子是：通过测量星球的位置和对应的时间，就得到数据；通过这些数据得到星球运动的轨迹，就是信息；通过信息总结出开普勒三定律，就是知识。人类进步就是靠使用知识不断改变生活和周围世界的过程，而这一切的基础就是数据。所以说数据是人类建造文明的基石。　　<br>　　数据一个重要的特性是，数据之间具有<strong>关联性</strong>。所以通过对数据挖掘和分析可以得到想要的和许多意想不到的信息。比如<a href="https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E6%9C%80%E8%91%97%E5%90%8D%E2%80%9C%E7%85%A7%E7%89%87%E6%B3%84%E5%AF%86%E6%A1%88%E2%80%9D/13870540" target="_blank" rel="noopener">中国最著名“照片泄密案“</a>，就是个很好的通过分析来获得有用信息的例子。因为数据之间的这种相关性，当无法直接获得信息（比如疫情传播情况），可以将相关联的信息（比如各地搜索情况）量化，然后通过数学模型，间接地得到所需信息。数学模型的基础离不开<strong>概率论</strong>和<strong>统计学</strong>。统计学的数据采集中有两个要点：<strong>量</strong>和<strong>质</strong>，量是指统计的数据量必须充足，而质则是指采集的数据需要具有代表性、与统计的目标相一致。因此，准确的统计结果，依赖大量的有效数据。在实际应用中需要建立数学模型，寻找模型参数，来让模型和采集的数据相匹配。过去寻找模型更加重要，但在今天更多的是寻找模型的参数，这属于机器学习（找到数学模型后，用统计的方法“训练出”模型的参数）的范畴。至于模型选择，可以将很多简单的模型组合到一起，取代寻找一个复杂模型，来逼近真实情况。这样的方法被称为<strong>数据驱动方法</strong>。因为，它是先有大量数据而不是预设的模型，然后用很多简单的模型去契合数据。数据驱动方法是大数据的基础，也是智能革命的核心，更重要的是它带来了一种新的思维方式。<br>　　人类认识自然的过程，科学实践的过程，以及在经济、社会领域的行为，总是伴随着数据的使用。从某种程度上讲，获得和利用数据的水平。在电子计算机诞生、人类进入信息时代之后，数据的作用越来越明显，数据驱动方法开始被普遍采用。如果把资本和机械动能作为大航海时代以来全球近代化的推动力，那么数据将成为下一次技术革命和社会变革的核心动力。</p><h2 id="大数据和机器智能"><a href="#大数据和机器智能" class="headerlink" title="大数据和机器智能　　"></a>大数据和机器智能　　</h2><p>　　验证机器有无智能的方法–图灵测试：让一台机器和一个人坐在幕后，裁判同时和幕后的人和机器交流，如果裁判无法判断对方是人还是机器，就说明这台机器有了和人同等的智能。学术界将机器智能分为<strong>传统人工智能方法</strong>和<strong>现代其他方法（如数据驱动、知识发现或机器学习）</strong>。传统的人工智能就是首先了解人类是如何产生智能的，然后让计算机按照人的思路去做，但是这种方法无法让计算机有类似于人的智能。作者举了一个例子：The pen was in the box(钢笔在盒子里)很好理解，但是另一句语法相同的话：The box in the pen就让人费解。在英语中pen有另一个不常用的意思–小孩玩耍的围栏。知道了这层含义，这句话就能够理解了。但是对于机器，如果使用同样的语法分析，这两句话会得到相同的语法分析树，而仅根据这两句话本身，甚至通篇文章，是无法判定pen的含义是围栏还是钢笔。人对这两句话的理解并非来自语法分析和语义本身，而是来自他们的常识或者说关于世界的知识（world knowledge），这种问题是传统的人工智能方法解决不了的。因此只有另辟蹊径，采用统计+数据的方法，这种方法最大的好处是，随着数据量的积累，系统会变得越来越好，相比之下过去人工智能的方法很难收益于数据量的提升。　　<br>　　数据的量变可以引起质变，作者举出google翻译系统的翻译准确率在短时间超过其他研究机构的例子，来说明大量的数据使得google的翻译系统发生了质变：在大部分研究团队只够训练三元模型的情况下，google能够训练出六元模型。由于互联网和移动互联网的出现，数据量剧增，并且开始相互关联，数据驱动方法的优势越来越明显。全世界各个领域数据不断向外扩展，很多数据开始出现交叉，各个维度的数据从点和线渐渐连成了网，或者说数据的关联性极大地增强，在这样的背景下，出现了大数据的概念。那么什么是大数据呢，它有哪些特征？大数据最明显的特征是<strong>体量大</strong>，除了体量大以外，作者认为大数据还有<strong>多维度</strong>和<strong>全面性（完备性）</strong>的特征。大数据的<strong>时效性</strong>不是必须的，但是如果有时效性可以做到很多过去做不到的事情：如城市智能交通管理。<br>　　有了大数据之后，就可以变智能问题为数据问题，机器智能不再是和人一样靠推理，而是采用大数据，从数据中学习获得信息和知识。由大数据引发的革命已经悄然发生，它能够让计算机的智能水平产生飞跃，在很多领域计算机将获得比人类更高的智能。大数据和由之而来的智能革命决定着今后20年的经济发展。</p><h2 id="机械思维和大数据思维"><a href="#机械思维和大数据思维" class="headerlink" title="机械思维和大数据思维"></a>机械思维和大数据思维</h2><p>　　自17世纪以来指导我们日常做事行为的最重要的思维方式是机械思维。机械思维的核心思想可以概括为：1.世界变化的规律是确定的；2.因为有确定性做保障，因此规律不仅可以被认识，而且可以用简单的公式或者语言描述清楚；3.这些规律应该是放之四海皆准的。机械思维作为一种准则指导人们的行为，其核心思想可以进一步概括成<strong>确定性（或者可预测性）</strong>和<strong>因果关系</strong>。例如牛顿用了几个定律（力学三定律和万有引力定律）就可以把天体的运动规律讲清楚，并且应用到任何场合都是正确的，这就是确定性。类似的，当我们给物体施加外力时，它就获得一个加速度，而加速度的大小取决于外力和物体本身质量，这是一种因果关系。<br>　　机器思维促进了世界近代化，乃至现代化的过程–它导致了很多重大发明和发现，比如爱因斯坦的相对论，也促进了一些现代科学的诞生，比如现代医药学。但是世界本身存在着很大的不确定性，由于它否认了不确定性和不可知性，机械思维在认识世界时还是有很多的局限性。世界不确定性来自两个方面：1.影响世界的变量非常多，很多细节难以准确测量。2.来自客观世界本身，它是宇宙的一个特性（微观世界里电子绕原子核的运动轨迹）。因为不确定性，世界上很多事情难以用确定的公式或者规则来表示。但是，并非没有规律可循，通常可以用概率模型来描述。在概率论的基础上，香农建立的信息论将世界的不确定性和信息联系了起来（大数据的可行性）。在无法确定因果关系时，数据为我们提供了解决问题的新方法，数据中包含的信息可以帮我们消除不确定性，而数据之间的相关性在某种程度上可以取代原来的因果关系，帮助我们得到想知道的答案，这便是大数据的核心。大数据思维和机械思维并非完全对立，它更多的是对后者的补充。　</p><h2 id="智能革命"><a href="#智能革命" class="headerlink" title="智能革命"></a>智能革命</h2><p>　　我们今天可能处在机器智能将要超过人类的拐点上，作者从数据的产生、存储、传输和处理四个角度分析大数据形成的技术条件，并且讲述了大数据和智能革命的技术挑战和未来的智能化产业，在今后，任何能提供大数据关键技术的公司和个人，在未来的智能革命中，都将有大展宏图的机会。　<br>　　“这是最好的时代，也是最坏的时代”，大数据导致机器革命的到来，这对未来社会的影响不仅仅存在于经济领域，而是全方位的。总体上看，这些影响是正面的，从长远看会使我们未来的社会变得更好。不过，智能革命也会带来很多负面的影响，特别是在它发展的初期。任何一次技术革命，最初受益的都是发展它、使用它的人，而远离它、拒绝接受它的人，在很长的时间里都是迷茫的一代。在智能革命到来之际，作为人和企业无疑应该拥抱它，让自己成为那2%的受益者。这将是一个让我们振奋的时代，也是一个给我们带来空前挑战的时代。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;　　之前读过《浪潮之巅》和《硅谷之谜》，被一个个科技巨头的故事深深吸引，在科技变革的浪潮中，有的公司顺势崛起，而有的则迅速消亡。在变革的巨浪中，公司的力量太小，只有拥抱技术变迁，才能不被淘汰。公司是这样，我们每个人也是，提早为可能要到来的巨浪做准备。&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;　　之前读过《浪潮之巅》和《硅谷之谜》，被一个个科技巨头的故事深深吸引，在科技变革的浪潮中，有的公司顺势崛起，而有的则迅速消亡。在变革的巨浪中，公司的力量太小，只有拥抱技术变迁，才能不被淘汰。公司是这样，我们每个人也是，提早为可能要到来的巨浪做准备。&lt;/p&gt;
     
     </summary>
+    
     
       <category term="读书笔记" scheme="https://vskyman.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
@@ -46,110 +63,16 @@
     <link href="https://vskyman.github.io/2017/08/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
     <id>https://vskyman.github.io/2017/08/13/操作系统之进程与线程/</id>
     <published>2017-08-13T13:33:06.000Z</published>
-    <updated>2017-09-10T09:57:49.161Z</updated>
+    <updated>2019-10-15T11:14:31.165Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h2><p>　　进程是正在执行的程序实例，包括程序计数器、寄存器和当前变量值。它是对CPU的抽象。<br><a id="more"></a>　</p>
-<h2 id="进程与程序的区别"><a href="#进程与程序的区别" class="headerlink" title="进程与程序的区别"></a>进程与程序的区别</h2><p>　　想象一位程序员在家做菜的过程，进程可以类比为厨师根据菜谱，取到各种原料然后烧制菜肴的动作集合;其中菜谱就是程序（即用适当形式描述的算法），厨师就是处理器（CPU），原料是输入数据。<br>　　现在假设他接到电话，有紧急bug需要处理。程序员就记录对照菜谱做到哪了（保存进程当前状态），然后去处理bug（切到更高优先级进程）。这里的关键思想是：一个进程是某种类型的一个活动，它有程序、输入、输出以及状态。单个处理器可以被若干进程共享，它使用某种调度算法决定何时停止一个进程工作，并转而为另一个进程提供服务。</p>
-<h2 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h2><p>　　<br>　　图2-2中可以看到进程的基本状态图，三种状态是：<br>　　1）运行态（该进程实际占用CPU）<br>　　2）就绪态（可运行，但因为其他进程正在运行而暂时停止）<br>　　3）阻塞态（除非某种外部事件发生，否则进程不能运行）</p>
-<p><img src="/2017/08/13/操作系统之进程与线程/programState.JPG" alt=""><br>　　进程的三种状态之间有四种可能的转换关系，如图2-2所示。在操作系统发现进程不能继续运行下去时，发生转换1。（在某些系统中，进程可以执行一个诸如pause的系统调用来进入阻塞状态。其他系统，如UNIX，当进程从没有有效输入的管道或设备文件度数据时，进程自动被阻塞）<br>　　转换2和3是由进程调度程序引起的，调度行为与选择的调度算法有关，进程调度程序是操作系统的一部分。<br>　　当进程等待的一个外部事件发生时（如一些输入到达），则发生转换4。如果此时没有其他进程运行，则立即触发转换3，该进程便开始运行。否则程序处于就绪态，等待CPU空闲时，调度该进程执行。</p>
-<h2 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h2><p>　　为了实现进程模型，操作系统维护一张表格，即进程表（又叫进程控制块PCB）。每个进程占用一个进程表项，该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、打开的文件状态、账号和调度信息，以及其他进程由运行态转换到就绪态或阻塞态时所必须保存的信息，以保证该进程随后能再次启动。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">进程管理</th>
-<th style="text-align:left">存储管理</th>
-<th style="text-align:left">文件管理</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">寄存器</td>
-<td style="text-align:left">正文段指针</td>
-<td style="text-align:left">根目录</td>
-</tr>
-<tr>
-<td style="text-align:left">程序计数器</td>
-<td style="text-align:left">数据段指针</td>
-<td style="text-align:left">工作目录</td>
-</tr>
-<tr>
-<td style="text-align:left">程序状态字</td>
-<td style="text-align:left">堆栈段指针</td>
-<td style="text-align:left">文件描述符</td>
-</tr>
-<tr>
-<td style="text-align:left">堆栈指针</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">用户ID</td>
-</tr>
-<tr>
-<td style="text-align:left">进程状态</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">组ID</td>
-</tr>
-<tr>
-<td style="text-align:left">优先级</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">调度参数</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">进程ID</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">父进程</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">进程组</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">信号</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">进程开始时间</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">使用的CPU时间</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">子进程的CPU时间</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">下次报警时间</td>
-<td style="text-align:left"></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>　　了解了进程表，下面阐述单个CPU是如何维护多个进程的顺序执行：<br>　　在内存底部的固定区域，存放着与I/0类关联的称为中断向量的表格，它包含中断服务程序的入口地址。假设一个磁盘中断发生时，用户进程3正在运行，则中断硬件将当前进程的程序计数器、程序状态字、少量寄存器（EFLAGS标志寄存器、CS代码段寄存器、IP指令指针寄存器、SS堆栈段寄存器、ESP栈顶指针）等压入堆栈，计算机随即跳转到中断向量所指向的地址，接着中断服务例程接管一切工作。<br>　　所有中断都从保存寄存器开始，通常将其保存在当前进程的进程表项里。随后会从堆栈中删除由中断硬件机制存入堆栈的信息，并将堆栈指向一个进程处理程序所使用的临时堆栈。之后，调用一个C过程处理特定中断类型剩下的工作。在完成有关工作后，大概会使某些进程就绪，接着调用调用调度程序，决定随后运行哪个进程。随后将控制权转给一段汇编代码，为当前进程装入寄存器已及内存映射并启动该进程。<br>　　中断发生后操作系统底层的工作步骤：<br>　　1.硬件压入堆栈程序计数器等<br>　　2.硬件从中断向量装入新的程序计数器<br>　　3.汇编语言过程保存寄存器值<br>　　4.汇编语言过程设置新的堆栈<br>　　5.C中断服务例程运行（典型地读和缓冲输入）<br>　　6.调度程序决定下一个运行的程序<br>　　7.C过程返回至汇编代码<br>　　8.汇编语言过程开始运行新的当前进程</p>
-<h3 id="用户栈与内核栈"><a href="#用户栈与内核栈" class="headerlink" title="用户栈与内核栈"></a>用户栈与内核栈</h3><p>　　每个进程会有两个栈，一个用户栈，存在于用户空间，一个内核栈，存在于内核空间。<br>　　当进程在用户空间运行时，cpu堆栈指针寄存器里面的内容是用户堆栈地址，使用用户栈；当进程在内核空间时，cpu堆栈指针寄存器里面的内容是内核栈空间地址，使用内核栈。内核在创建进程，创建task_struct的同时，会为进程创建内核栈（地址保存在stack中），在内核栈的栈顶存储了thread_info结构，其中包含了task字段，从而查找到该进程相关数据信息，如下图所示：<br><img src="/2017/08/13/操作系统之进程与线程/thread_info.png" alt=""><br>　　从上图可以看到，内核栈是从该内存区域的顶层向下（从高地址到低地址）增长的，而thread_info结构则是从该区域的开始处向上（从低地址到高地址）增长。内核栈的栈顶地址存储在esp寄存器中。通过将esp与上该区域的大小，从而获取thread_info结构。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">内核栈定义：</div><div class="line">	union thread_union &#123;</div><div class="line">　　	struct thread_info thread_info;</div><div class="line">　　	unsigned long stack[THREAD_SIZE/sizeof(long)];</div><div class="line">　　&#125;;</div><div class="line"></div><div class="line">通过esp&amp;(~(THREAD_SIZE - 1)))获得thread_info进而获取进程描述符current:</div><div class="line">#define current get_current()</div><div class="line">　　static inline struct task_struct * get_current(void)</div><div class="line">　　&#123;</div><div class="line">　　	return current_thread_info()-&gt;task;</div><div class="line">　　&#125;</div><div class="line">　　static inline struct thread_info *current_thread_info(void)</div><div class="line">　　&#123;</div><div class="line">　　	struct thread_info *ti;</div><div class="line">　　	__asm__(&quot;andl %%esp,%0; &quot;:&quot;=r&quot; (ti) : &quot;&quot; (~(THREAD_SIZE - 1)));</div><div class="line">　　	return ti;</div><div class="line">　　&#125;</div></pre></td></tr></table></figure></p>
-<p>　　当进程因为中断或者系统调用而陷入内核态时，进程所使用的堆栈也要从用户栈转到内核栈。<br>　　进程陷入内核态后，就会使用其TSS段中给出的特权级0的堆栈指针tss.ss0、tss.esp0，即内核栈。原用户栈指针会被保存在内核栈中。而当从内核态返回用户态时，就会恢复使用用户态的堆栈。这样就实现了内核栈和用户栈的互转。<br>　　那么，我们知道从内核转到用户态时用户栈的地址是在陷入内核的时候保存在内核栈里面的，但是在陷入内核的时候，我们是如何知道内核栈的地址的呢？<br>　　关键在进程从用户态转到内核态的时候，进程的内核栈总是空的。这是因为，当进程在用户态运行时，使用的是用户栈，当进程陷入到内核态时，内核栈保存进程在内核态运行的相关信息，一旦进程返回用户态后，内核栈中保存的信息就无效了，因此每次进程从用户态陷入内核的时候得到的内核栈都是空的。所以在进程陷入内核的时候，直接把内核栈的栈顶地址给堆栈指针寄存器就可以了。<br><img src="/2017/08/13/操作系统之进程与线程/interrupted_procedure&#39;s_and_handler&#39;s_stack.png" alt=""></p>
-<p>本文链接：<a href="https://vskyman.github.io/2017/08/13/操作系统之进程与线程/">操作系统之进程与线程</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h2><p>　　进程是正在执行的程序实例，包括程序计数器、寄存器和当前变量值。它是对CPU的抽象。</p><a id="more"></a>　<h2 id="进程与程序的区别"><a href="#进程与程序的区别" class="headerlink" title="进程与程序的区别"></a>进程与程序的区别</h2><p>　　想象一位程序员在家做菜的过程，进程可以类比为厨师根据菜谱，取到各种原料然后烧制菜肴的动作集合;其中菜谱就是程序（即用适当形式描述的算法），厨师就是处理器（CPU），原料是输入数据。<br>　　现在假设他接到电话，有紧急bug需要处理。程序员就记录对照菜谱做到哪了（保存进程当前状态），然后去处理bug（切到更高优先级进程）。这里的关键思想是：一个进程是某种类型的一个活动，它有程序、输入、输出以及状态。单个处理器可以被若干进程共享，它使用某种调度算法决定何时停止一个进程工作，并转而为另一个进程提供服务。</p><h2 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h2><p>　　<br>　　图2-2中可以看到进程的基本状态图，三种状态是：<br>　　1）运行态（该进程实际占用CPU）<br>　　2）就绪态（可运行，但因为其他进程正在运行而暂时停止）<br>　　3）阻塞态（除非某种外部事件发生，否则进程不能运行）</p><p><img src="%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/programState.JPG" alt><br>　　进程的三种状态之间有四种可能的转换关系，如图2-2所示。在操作系统发现进程不能继续运行下去时，发生转换1。（在某些系统中，进程可以执行一个诸如pause的系统调用来进入阻塞状态。其他系统，如UNIX，当进程从没有有效输入的管道或设备文件度数据时，进程自动被阻塞）<br>　　转换2和3是由进程调度程序引起的，调度行为与选择的调度算法有关，进程调度程序是操作系统的一部分。<br>　　当进程等待的一个外部事件发生时（如一些输入到达），则发生转换4。如果此时没有其他进程运行，则立即触发转换3，该进程便开始运行。否则程序处于就绪态，等待CPU空闲时，调度该进程执行。</p><h2 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h2><p>　　为了实现进程模型，操作系统维护一张表格，即进程表（又叫进程控制块PCB）。每个进程占用一个进程表项，该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、打开的文件状态、账号和调度信息，以及其他进程由运行态转换到就绪态或阻塞态时所必须保存的信息，以保证该进程随后能再次启动。</p><table><thead><tr><th align="left">进程管理</th><th align="left">存储管理</th><th align="left">文件管理</th></tr></thead><tbody><tr><td align="left">寄存器</td><td align="left">正文段指针</td><td align="left">根目录</td></tr><tr><td align="left">程序计数器</td><td align="left">数据段指针</td><td align="left">工作目录</td></tr><tr><td align="left">程序状态字</td><td align="left">堆栈段指针</td><td align="left">文件描述符</td></tr><tr><td align="left">堆栈指针</td><td align="left"></td><td align="left">用户ID</td></tr><tr><td align="left">进程状态</td><td align="left"></td><td align="left">组ID</td></tr><tr><td align="left">优先级</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">调度参数</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">进程ID</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">父进程</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">进程组</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">信号</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">进程开始时间</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">使用的CPU时间</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">子进程的CPU时间</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">下次报警时间</td><td align="left"></td><td align="left"></td></tr><tr><td align="left">————</td><td align="left"></td><td align="left"></td></tr></tbody></table><p>　　了解了进程表，下面阐述单个CPU是如何维护多个进程的顺序执行：<br>　　在内存底部的固定区域，存放着与I/0类关联的称为中断向量的表格，它包含中断服务程序的入口地址。假设一个磁盘中断发生时，用户进程3正在运行，则中断硬件将当前进程的程序计数器、程序状态字、少量寄存器（EFLAGS标志寄存器、CS代码段寄存器、IP指令指针寄存器、SS堆栈段寄存器、ESP栈顶指针）等压入堆栈，计算机随即跳转到中断向量所指向的地址，接着中断服务例程接管一切工作。<br>　　所有中断都从保存寄存器开始，通常将其保存在当前进程的进程表项里。随后会从堆栈中删除由中断硬件机制存入堆栈的信息，并将堆栈指向一个进程处理程序所使用的临时堆栈。之后，调用一个C过程处理特定中断类型剩下的工作。在完成有关工作后，大概会使某些进程就绪，接着调用调用调度程序，决定随后运行哪个进程。随后将控制权转给一段汇编代码，为当前进程装入寄存器已及内存映射并启动该进程。<br>　　中断发生后操作系统底层的工作步骤：<br>　　1.硬件压入堆栈程序计数器等<br>　　2.硬件从中断向量装入新的程序计数器<br>　　3.汇编语言过程保存寄存器值<br>　　4.汇编语言过程设置新的堆栈<br>　　5.C中断服务例程运行（典型地读和缓冲输入）<br>　　6.调度程序决定下一个运行的程序<br>　　7.C过程返回至汇编代码<br>　　8.汇编语言过程开始运行新的当前进程</p><h3 id="用户栈与内核栈"><a href="#用户栈与内核栈" class="headerlink" title="用户栈与内核栈"></a>用户栈与内核栈</h3><p>　　每个进程会有两个栈，一个用户栈，存在于用户空间，一个内核栈，存在于内核空间。<br>　　当进程在用户空间运行时，cpu堆栈指针寄存器里面的内容是用户堆栈地址，使用用户栈；当进程在内核空间时，cpu堆栈指针寄存器里面的内容是内核栈空间地址，使用内核栈。内核在创建进程，创建task_struct的同时，会为进程创建内核栈（地址保存在stack中），在内核栈的栈顶存储了thread_info结构，其中包含了task字段，从而查找到该进程相关数据信息，如下图所示：<br><img src="%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/thread_info.png" alt><br>　　从上图可以看到，内核栈是从该内存区域的顶层向下（从高地址到低地址）增长的，而thread_info结构则是从该区域的开始处向上（从低地址到高地址）增长。内核栈的栈顶地址存储在esp寄存器中。通过将esp与上该区域的大小，从而获取thread_info结构。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">内核栈定义：</span><br><span class="line">union thread_union &#123;</span><br><span class="line">　　struct thread_info thread_info;</span><br><span class="line">　　unsigned long stack[THREAD_SIZE/sizeof(long)];</span><br><span class="line">　　&#125;;</span><br><span class="line"></span><br><span class="line">通过esp&amp;(~(THREAD_SIZE - 1)))获得thread_info进而获取进程描述符current:</span><br><span class="line">#define current get_current()</span><br><span class="line">　　static inline struct task_struct * get_current(void)</span><br><span class="line">　　&#123;</span><br><span class="line">　　return current_thread_info()-&gt;task;</span><br><span class="line">　　&#125;</span><br><span class="line">　　static inline struct thread_info *current_thread_info(void)</span><br><span class="line">　　&#123;</span><br><span class="line">　　struct thread_info *ti;</span><br><span class="line">　　__asm__(&quot;andl %%esp,%0; &quot;:&quot;=r&quot; (ti) : &quot;&quot; (~(THREAD_SIZE - 1)));</span><br><span class="line">　　return ti;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure><p>　　当进程因为中断或者系统调用而陷入内核态时，进程所使用的堆栈也要从用户栈转到内核栈。<br>　　进程陷入内核态后，就会使用其TSS段中给出的特权级0的堆栈指针tss.ss0、tss.esp0，即内核栈。原用户栈指针会被保存在内核栈中。而当从内核态返回用户态时，就会恢复使用用户态的堆栈。这样就实现了内核栈和用户栈的互转。<br>　　那么，我们知道从内核转到用户态时用户栈的地址是在陷入内核的时候保存在内核栈里面的，但是在陷入内核的时候，我们是如何知道内核栈的地址的呢？<br>　　关键在进程从用户态转到内核态的时候，进程的内核栈总是空的。这是因为，当进程在用户态运行时，使用的是用户栈，当进程陷入到内核态时，内核栈保存进程在内核态运行的相关信息，一旦进程返回用户态后，内核栈中保存的信息就无效了，因此每次进程从用户态陷入内核的时候得到的内核栈都是空的。所以在进程陷入内核的时候，直接把内核栈的栈顶地址给堆栈指针寄存器就可以了。<br><img src="%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/interrupted_procedure's_and_handler's_stack.png" alt></p><p>本文链接：<a href="https://vskyman.github.io/2017/08/13/操作系统之进程与线程/">操作系统之进程与线程</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;进程的概念&quot;&gt;&lt;a href=&quot;#进程的概念&quot; class=&quot;headerlink&quot; title=&quot;进程的概念&quot;&gt;&lt;/a&gt;进程的概念&lt;/h2&gt;&lt;p&gt;　　进程是正在执行的程序实例，包括程序计数器、寄存器和当前变量值。它是对CPU的抽象。&lt;br&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;进程的概念&quot;&gt;&lt;a href=&quot;#进程的概念&quot; class=&quot;headerlink&quot; title=&quot;进程的概念&quot;&gt;&lt;/a&gt;进程的概念&lt;/h2&gt;&lt;p&gt;　　进程是正在执行的程序实例，包括程序计数器、寄存器和当前变量值。它是对CPU的抽象。&lt;/p&gt;
     
     </summary>
+    
     
       <category term="操作系统" scheme="https://vskyman.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
@@ -163,17 +86,16 @@
     <link href="https://vskyman.github.io/2017/07/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%86%85%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/"/>
     <id>https://vskyman.github.io/2017/07/22/操作系统之内存储管理/</id>
     <published>2017-07-22T08:29:54.000Z</published>
-    <updated>2017-09-14T01:00:39.987Z</updated>
+    <updated>2019-10-15T11:14:31.171Z</updated>
     
-    <content type="html"><![CDATA[<p>Waiting for update!<br><a id="more"></a></p>
-<p>本文链接：<a href="https://vskyman.github.io/2017/07/22/操作系统之存储管理/">操作系统之存储管理</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>Waiting for update!</p><a id="more"></a><p>本文链接：<a href="https://vskyman.github.io/2017/07/22/操作系统之存储管理/">操作系统之存储管理</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Waiting for update!&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;Waiting for update!&lt;/p&gt;
     
     </summary>
+    
     
       <category term="操作系统" scheme="https://vskyman.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
@@ -187,26 +109,16 @@
     <link href="https://vskyman.github.io/2017/03/30/%E7%A7%BB%E6%A4%8Dtraceroute%E5%88%B0Ecos/"/>
     <id>https://vskyman.github.io/2017/03/30/移植traceroute到Ecos/</id>
     <published>2017-03-30T08:29:54.000Z</published>
-    <updated>2017-08-19T04:39:11.716Z</updated>
+    <updated>2019-10-16T10:58:25.987Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="traceroute-是什么？"><a href="#traceroute-是什么？" class="headerlink" title="traceroute 是什么？"></a>traceroute 是什么？</h2><p>　　<a href="https://en.wikipedia.org/wiki/Traceroute" target="_blank" rel="external">Traceroute</a>是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。<br><a id="more"></a></p>
-<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>　　在Linux中，traceroute默认发送一组UDP报文到目的主机，但是可以配置ICMP请求或TCP SYN报文来替代。在Windows中，traceroute 默认发送ICMP请求报文而不是UDP报文。生存时间（TTL）值，被用来确定数据包发往目的地址过程中所经过的中间路由。当数据包经过路由器时，路由器会将数据包的TTL值减1，当路由器收到数据包的TTL值为0时，丢弃数据包，并返回ICMP error信息ICMP 超时。通常默认的初始TTL值为128（Windows OS）和64（Unix-based OS）<br>　　Traceroute程序通过初始发送TTL=1并且逐渐增加TTL值的数据包来识别中间路由。第一个路由器收到了数据包，减少TTL，发现TTL==0，丢弃数据包并返回ICMP超时信息给源地址。下一组数据包设置的TTL=2，所以第一个路由器将TTL-1并转发数据包，第二个路由器发现TTL==0，会丢弃数据包 并发回ICMP超时消息。Traceroute就可以通过 路由器发回的ICMP超时消息来构建一个数据包经过的路由器地址列表，直到到达目的地址，目的地址返回一个ICMP Reply消息。<br>　　每个沿路径返回的路由器时间戳值就是延迟的值，通常以毫秒为单位来测量每个包。<br>　　发送方期望在指定的秒内收到回复，如果在期望的间隔内没有收到确认数据包，会打印出一个星花。Internet Protocol不要求发往特定目的地的数据包必须采取相同的路由，所以主机列表记录的是数据包已经遍历过的主机。如果在#N跳的主机没有回复，在输出的时候这一跳被跳过。<br>　　在类Unix操作系统中，traceroute默认采用目的端口号范围33434-33534的UDP数据报。Traceroute程序通常有选项来使用ICMP Echo Request数据包或者TCP SYN报文来替代UDP。如果一个网络有防火墙并且同时管理Window 和类Unix系统，必须打开超过一个协议来允许traceroute穿过防火墙来工作并收到回复。</p>
-<h2 id="FreeBSD-Traceroute-Usage"><a href="#FreeBSD-Traceroute-Usage" class="headerlink" title="FreeBSD Traceroute Usage"></a>FreeBSD Traceroute Usage</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">FreeBSD Traceroute命令选项(1.4a12+FreeBSD)：</div><div class="line">    &quot;Usage: %s [-dFInrSvx] [-g gateway] [-i iface] [-f first_ttl]\n&quot;</div><div class="line">         &quot;\t[-m max_ttl] [-p port] [-P proto] [-q nqueries] [-s src_addr]\n&quot;</div><div class="line">         &quot;\t[-t tos] [-w waittime] [-z pausemsecs] host [packetlen]\n&quot;</div></pre></td></tr></table></figure>
-<p>-P：设置探查包协议类型：支持UDP（默认类型）、TCP、ICMP、GRE（协议号47，封装ppp协议:协议类型0x880b）<br>-p: 设置目的端口号<br>-i: 设置接口，探测包的源IP为接口IP地址(若有多个地址，可通过-s选项指定)<br>-s: 指定接口的一个IP地址为SIP<br>-t: 设置探查包IP协议TOS域<br>-w: 发送探查包后，设置接收数据等待时间，超时未收到数据则打印”*”<br>-m: 设置探查包IP协议TTL(Time to live)域<br>-g: 设置宽松的源站选路路由地址<br>-f: 设置first TTL值(默认为1)<br>-z: 两次探查间最小的时间间隔(default 0)，单位ms，Useful when some routers use rate-limit for icmp messages.</p>
-<p>-I: 设置发包协议类型为ICMP<br>-d: 打开socket层Debugging(需要内核支持)<br>　　setsockopt(sndsock, SOL_SOCKET, <strong>SO_DEBUG</strong>, (char <em>)&amp;on, sizeof(on));<br>-F: 设置探查包，IP不分片<br>-n: 显示IP地址时，不将其映射成主机名()<br>-r: 不经过路由表，直接发送给直连网络上的主机，如果主机不在直接网络上，则返回一个错误。<br>　　setsockopt(s, SOL_SOCKET, <strong>SO_DONTROUTE</strong>, (char </em>)&amp;on, sizeof(on));<br>-S: 打印lost探查包百分比<br>-v: 打印调试信息(-v –v 会把探查包按字节打印出来)<br>-x: 填充探查包IP校验和字段</p>
-<h2 id="移植到ecos中遇到的问题"><a href="#移植到ecos中遇到的问题" class="headerlink" title="移植到ecos中遇到的问题"></a>移植到ecos中遇到的问题</h2><ul>
-<li>Ecos共用同一地址空间，traceroute源文件中的全局变量和函数 须修改成static定义。</li>
-<li>Ecos Shell是一个单独线程来调用用户输入命令对应的函数（解析输入，调用相应函数），而不是执行命令的程序（ecos是一种单进程多线程操作系统），需要在调用函数时，对static 变量进行初始化。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　调试程序的时候，先从原理上弄懂程序，做到思想走在行动前面，思想指导行动，避免盲目行动。</p>
-<p>本文链接：<a href="https://vskyman.github.io/2017/03/30/移植traceroute到Ecos/">移植traceroute到Ecos</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="traceroute-是什么？"><a href="#traceroute-是什么？" class="headerlink" title="traceroute 是什么？"></a>traceroute 是什么？</h2><p>　　<a href="https://en.wikipedia.org/wiki/Traceroute" target="_blank" rel="noopener">Traceroute</a>是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。</p><a id="more"></a><h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>　　在Linux中，traceroute默认发送一组UDP报文到目的主机，但是可以配置ICMP请求或TCP SYN报文来替代。在Windows中，traceroute 默认发送ICMP请求报文而不是UDP报文。生存时间（TTL）值，被用来确定数据包发往目的地址过程中所经过的中间路由。当数据包经过路由器时，路由器会将数据包的TTL值减1，当路由器收到数据包的TTL值为0时，丢弃数据包，并返回ICMP error信息ICMP 超时。通常默认的初始TTL值为128（Windows OS）和64（Unix-based OS）<br>　　Traceroute程序通过初始发送TTL=1并且逐渐增加TTL值的数据包来识别中间路由。第一个路由器收到了数据包，减少TTL，发现TTL==0，丢弃数据包并返回ICMP超时信息给源地址。下一组数据包设置的TTL=2，所以第一个路由器将TTL-1并转发数据包，第二个路由器发现TTL==0，会丢弃数据包 并发回ICMP超时消息。Traceroute就可以通过 路由器发回的ICMP超时消息来构建一个数据包经过的路由器地址列表，直到到达目的地址，目的地址返回一个ICMP Reply消息。<br>　　每个沿路径返回的路由器时间戳值就是延迟的值，通常以毫秒为单位来测量每个包。<br>　　发送方期望在指定的秒内收到回复，如果在期望的间隔内没有收到确认数据包，会打印出一个星花。Internet Protocol不要求发往特定目的地的数据包必须采取相同的路由，所以主机列表记录的是数据包已经遍历过的主机。如果在#N跳的主机没有回复，在输出的时候这一跳被跳过。<br>　　在类Unix操作系统中，traceroute默认采用目的端口号范围33434-33534的UDP数据报。Traceroute程序通常有选项来使用ICMP Echo Request数据包或者TCP SYN报文来替代UDP。如果一个网络有防火墙并且同时管理Window 和类Unix系统，必须打开超过一个协议来允许traceroute穿过防火墙来工作并收到回复。</p><h2 id="FreeBSD-Traceroute-Usage"><a href="#FreeBSD-Traceroute-Usage" class="headerlink" title="FreeBSD Traceroute Usage"></a>FreeBSD Traceroute Usage</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FreeBSD Traceroute命令选项(1.4a12+FreeBSD)：</span><br><span class="line">    &quot;Usage: %s [-dFInrSvx] [-g gateway] [-i iface] [-f first_ttl]\n&quot;</span><br><span class="line">         &quot;\t[-m max_ttl] [-p port] [-P proto] [-q nqueries] [-s src_addr]\n&quot;</span><br><span class="line">         &quot;\t[-t tos] [-w waittime] [-z pausemsecs] host [packetlen]\n&quot;</span><br></pre></td></tr></table></figure><p>-P：设置探查包协议类型：支持UDP（默认类型）、TCP、ICMP、GRE（协议号47，封装ppp协议:协议类型0x880b）<br>-p: 设置目的端口号<br>-i: 设置接口，探测包的源IP为接口IP地址(若有多个地址，可通过-s选项指定)<br>-s: 指定接口的一个IP地址为SIP<br>-t: 设置探查包IP协议TOS域<br>-w: 发送探查包后，设置接收数据等待时间，超时未收到数据则打印”*”<br>-m: 设置探查包IP协议TTL(Time to live)域<br>-g: 设置宽松的源站选路路由地址<br>-f: 设置first TTL值(默认为1)<br>-z: 两次探查间最小的时间间隔(default 0)，单位ms，Useful when some routers use rate-limit for icmp messages.</p><p>-I: 设置发包协议类型为ICMP<br>-d: 打开socket层Debugging(需要内核支持)<br>　　setsockopt(sndsock, SOL_SOCKET, <strong>SO_DEBUG</strong>, (char <em>)&amp;on, sizeof(on));<br>-F: 设置探查包，IP不分片<br>-n: 显示IP地址时，不将其映射成主机名()<br>-r: 不经过路由表，直接发送给直连网络上的主机，如果主机不在直接网络上，则返回一个错误。<br>　　setsockopt(s, SOL_SOCKET, *</em>SO_DONTROUTE**, (char *)&amp;on, sizeof(on));<br>-S: 打印lost探查包百分比<br>-v: 打印调试信息(-v –v 会把探查包按字节打印出来)<br>-x: 填充探查包IP校验和字段</p><h2 id="移植到ecos中遇到的问题"><a href="#移植到ecos中遇到的问题" class="headerlink" title="移植到ecos中遇到的问题"></a>移植到ecos中遇到的问题</h2><ul><li>Ecos共用同一地址空间，traceroute源文件中的全局变量和函数 须修改成static定义。</li><li>Ecos Shell是一个单独线程来调用用户输入命令对应的函数（解析输入，调用相应函数），而不是执行命令的程序（ecos是一种单进程多线程操作系统），需要在调用函数时，对static 变量进行初始化。</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　调试程序的时候，先从原理上弄懂程序，做到思想走在行动前面，思想指导行动，避免盲目行动。</p><p>本文链接：<a href="https://vskyman.github.io/2017/03/30/移植traceroute到Ecos/">移植traceroute到Ecos</a><br>作者：<a href="https://vskyman.github.io/">Vskyman</a><br>出处：<a href="https://vskyman.github.io/">https://vskyman.github.io/</a><br>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a><br>国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名及链接。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;traceroute-是什么？&quot;&gt;&lt;a href=&quot;#traceroute-是什么？&quot; class=&quot;headerlink&quot; title=&quot;traceroute 是什么？&quot;&gt;&lt;/a&gt;traceroute 是什么？&lt;/h2&gt;&lt;p&gt;　　&lt;a href=&quot;https://en.wikipedia.org/wiki/Traceroute&quot;&gt;Traceroute&lt;/a&gt;是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。&lt;br&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;traceroute-是什么？&quot;&gt;&lt;a href=&quot;#traceroute-是什么？&quot; class=&quot;headerlink&quot; title=&quot;traceroute 是什么？&quot;&gt;&lt;/a&gt;traceroute 是什么？&lt;/h2&gt;&lt;p&gt;　　&lt;a href=&quot;https://en.wikipedia.org/wiki/Traceroute&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Traceroute&lt;/a&gt;是一个能够显示数据包经过IP网络中的路由（路径）并且测量传输时延的计算机网络诊断工具。Traceroute会打印与目标主机间经过路由的往返时延，而Ping 仅计算与目标主机的最终往返时延。&lt;/p&gt;
     
     </summary>
+    
     
       <category term="网络技术" scheme="https://vskyman.github.io/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/"/>
     
